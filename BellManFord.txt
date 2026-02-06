@@ -1,8 +1,8 @@
 
 import java.util.Arrays;
 import java.util.Scanner;
-public class BellManFord {
-    public static void BellmanFordAlgorith(int graph[][],int source){
+public class BellmanFord {
+    public static void BellmanFordAlgorithm(int graph[][],int source){
         int n=graph.length;
         int dist[] = new int[n];
         Arrays.fill(dist, Integer.MAX_VALUE);
@@ -47,7 +47,7 @@ public class BellManFord {
         }
         System.out.print("Enter source vertex: ");
         int source = sc.nextInt();
-        BellmanFordAlgorith(graph,source-1);
+        BellmanFordAlgorithm(graph,source-1);
         sc.close();
     }
 }
