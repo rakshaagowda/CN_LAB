@@ -1,0 +1,43 @@
+
+
+import java.util.Scanner;
+
+public class TokenBucket {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        -
+        System.out.print("Enter bucket capacity (number of tokens): ");
+        int bucketCapacity = sc.nextInt();
+        System.out.print("Enter token generation rate (tokens per second): ");
+        int tokenRate = sc.nextInt();
+
+      
+        System.out.print("Enter the number of packets: ");
+        int numPackets = sc.nextInt();
+        int[] packetarray = new int[numPackets];
+        System.out.println("Enter the packet sizes: ");
+        for (int i = 0; i < numPackets; i++) {
+            packetarray[i] = sc.nextInt();
+        }
+
+        int tokens = 0;
+        int sent = 0;
+        System.out.println("\nPacket Size\tTokens Available\tSent\tTokens Remaining\tStatus");
+        for (int packet : packetarray) {
+           
+            tokens = Math.min(tokens + tokenRate, bucketCapacity);
+
+         
+            if (packet <= tokens) {
+                tokens -= packet;
+                sent = packet;
+                System.out.println(packetSize + "\t\t" + (tokens+packet) + "\t\t\t" + sent + "\t" + tokens +  "\t\t\tAccepted");
+            } else {
+                sent = 0;
+                System.out.println(packet + "\t\t" + tokens + "\t\t\t" + sent + "\t" + tokens + "\t\t\tDropped");
+            }
+        }
+        sc.close();
+    }
+}
